@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: registration-service
+  name: registration-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registration-service
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: registration-service
+    spec:
+      containers:
+      - image: hisureshk/registration-service
+        name: registration-service
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: registration-service
+  name: registration-service
+spec:
+  selector:
+    app: registration-service
+  ports:
+  - protocol: "TCP"
+    port: 8080
+    targetPort: 8080
+  type: NodePort
