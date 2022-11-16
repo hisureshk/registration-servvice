@@ -70,4 +70,5 @@ pipeline {
                 sh "kubectl -f k8s/service-deployment.yml"
             }
         }
+    }
 }
