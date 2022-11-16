@@ -67,6 +67,7 @@ pipeline {
 
         stage('K8s Deploy') {
             steps {
+                sh "kubectl config use-context minikube"
                 sh "kubectl create -f k8s/service-deployment.yml"
             }
         }
